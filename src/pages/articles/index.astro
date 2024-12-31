@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ArticleCard from '../../components/articles/ArticleCard.astro';
+import type { Article } from '../../types/article';
+
+// TODO: Replace with actual data from Sanity
+const articles: Article[] = [
+  {
+    id: 'iphone-15-pro-max-review',
+    title: "iPhone 15 Pro Max: The Ultimate Camera Phone?",
+    excerpt: "A deep dive into the latest iPhone's camera capabilities and why it might be the best smartphone camera yet.",
+    content: "",
+    image: "/images/iphone-15-pro-max.jpg",
+    category: "Reviews",
+    date: "2024-03-15",
+    author: {
+      name: "John Doe",
+      avatar: "/images/authors/john-doe.jpg"
+    },
+    tags: ["iPhone", "Camera", "Review"]
+  },
+  // Add more articles
+];
+---
+
+<Layout title="Articles">
+  <section class="container py-12">
+    <h1 class="text-4xl font-bold mb-8">Latest Articles</h1>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {articles.map(article => (
+        <ArticleCard article={article} />
+      ))}
+    </div>
+  </section>
+</Layout>

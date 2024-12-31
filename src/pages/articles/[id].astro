@@ -1,0 +1,83 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import type { Article } from '../../types/article';
+
+export async function getStaticPaths() {
+  // TODO: Replace with actual data from Sanity
+  const articles: Article[] = [
+    {
+      id: 'iphone-15-pro-max-review',
+      title: "iPhone 15 Pro Max: The Ultimate Camera Phone?",
+      excerpt: "A deep dive into the latest iPhone's camera capabilities and why it might be the best smartphone camera yet.",
+      content: `
+        <p>The iPhone 15 Pro Max represents Apple's most ambitious camera system to date...</p>
+        <!-- Add more content -->
+      `,
+      image: "/images/iphone-15-pro-max.jpg",
+      category: "Reviews",
+      date: "2024-03-15",
+      author: {
+        name: "John Doe",
+        avatar: "/images/authors/john-doe.jpg"
+      },
+      tags: ["iPhone", "Camera", "Review"]
+    },
+    // Add more articles
+  ];
+
+  return articles.map(article => ({
+    params: { id: article.id },
+    props: { article }
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<Layout title={article.title}>
+  <article class="container py-12">
+    <header class="max-w-3xl mx-auto mb-12">
+      <span class="text-accent text-sm font-medium">{article.category}</span>
+      <h1 class="text-4xl font-bold mt-4 mb-6">{article.title}</h1>
+      <div class="flex items-center mb-8">
+        <img 
+          src={article.author.avatar} 
+          alt={article.author.name}
+          class="w-12 h-12 rounded-full mr-4"
+        />
+        <div>
+          <span class="font-medium block">{article.author.name}</span>
+          <time datetime={article.date} class="text-sm text-gray-400">
+            {new Date(article.date).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time>
+        </div>
+      </div>
+      <img 
+        src={article.image} 
+        alt={article.title}
+        class="w-full aspect-video object-cover rounded-xl"
+      />
+    </header>
+
+    <div class="max-w-3xl mx-auto prose prose-invert prose-accent">
+      <Fragment set:html={article.content} />
+    </div>
+
+    <footer class="max-w-3xl mx-auto mt-12 pt-8 border-t border-gray-800">
+      <div class="flex flex-wrap gap-2">
+        {article.tags.map(tag => (
+          <a 
+            href={`/tags/${tag.toLowerCase()}`}
+            class="px-3 py-1 bg-secondary rounded-full text-sm hover:text-accent"
+          >
+            #{tag}
+          </a>
+        ))}
+      </div>
+    </footer>
+  </article>
+</Layout>

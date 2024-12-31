@@ -1,0 +1,55 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-secondary py-12 mt-20">
+  <div class="container">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">Lazy Tech Talk</h3>
+        <p class="text-gray-400">Your go-to source for tech reviews, tutorials, and insights.</p>
+      </div>
+      
+      <div>
+        <h4 class="font-bold mb-4">Categories</h4>
+        <ul class="space-y-2">
+          <li><a href="/reviews" class="text-gray-400 hover:text-accent">Reviews</a></li>
+          <li><a href="/tutorials" class="text-gray-400 hover:text-accent">Tutorials</a></li>
+          <li><a href="/launches" class="text-gray-400 hover:text-accent">New Launches</a></li>
+          <li><a href="/blog" class="text-gray-400 hover:text-accent">Blog</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="font-bold mb-4">Follow Us</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-accent">Twitter</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-accent">YouTube</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-accent">Instagram</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="font-bold mb-4">Newsletter</h4>
+        <p class="text-gray-400 mb-4">Subscribe for the latest tech updates.</p>
+        <form class="flex">
+          <input 
+            type="email" 
+            placeholder="Enter your email"
+            class="bg-primary px-4 py-2 rounded-l-lg flex-grow"
+          />
+          <button 
+            type="submit"
+            class="bg-accent hover:bg-accent-dark px-4 py-2 rounded-r-lg text-primary font-medium"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+      <p>&copy; {currentYear} Lazy Tech Talk. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FeaturedPost from '../components/FeaturedPost.astro';
+import PostGrid from '../components/PostGrid.astro';
+import TrendingSection from '../components/TrendingSection.astro';
+
+// TODO: Replace with actual data from Sanity
+const featuredPosts = [
+  {
+    title: "iPhone 15 Pro Max: The Ultimate Camera Phone?",
+    excerpt: "A deep dive into the latest iPhone's camera capabilities and why it might be the best smartphone camera yet.",
+    image: "/images/featured-post.jpg",
+    category: "Reviews",
+    date: "2024-03-15"
+  },
+  {
+    title: "ChatGPT vs Google Gemini: AI Showdown",
+    excerpt: "Comparing the two leading AI models in real-world applications.",
+    image: "/images/ai-comparison.jpg",
+    category: "Analysis",
+    date: "2024-03-14"
+  }
+];
+
+const latestNews = [
+  {
+    title: "Samsung Galaxy S24 Ultra First Look",
+    excerpt: "Hands-on with Samsung's latest flagship featuring advanced AI capabilities.",
+    image: "/images/s24-ultra.jpg",
+    category: "News",
+    date: "2024-03-13"
+  },
+  {
+    title: "10 Must-Have Android Apps in 2024",
+    excerpt: "Essential applications that will transform your Android experience.",
+    image: "/images/android-apps.jpg",
+    category: "Tutorials",
+    date: "2024-03-12"
+  },
+  {
+    title: "The Rise of AI Smartphones",
+    excerpt: "How artificial intelligence is reshaping mobile computing.",
+    image: "/images/ai-phones.jpg",
+    category: "Analysis",
+    date: "2024-03-11"
+  }
+];
+
+const trendingTopics = [
+  "AI Phones",
+  "Foldables",
+  "Apple Vision Pro",
+  "ChatGPT",
+  "Gaming Laptops"
+];
+---
+
+<Layout title="Home">
+  <!-- Hero Section -->
+  <section class="container py-8">
+    <div class="grid lg:grid-cols-2 gap-8">
+      {featuredPosts.map((post, index) => (
+        <div class={index === 0 ? 'lg:row-span-2' : ''}>
+          <FeaturedPost post={post} featured={index === 0} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Trending Topics -->
+  <TrendingSection topics={trendingTopics} />
+  
+  <!-- Latest News -->
+  <section class="container py-12">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-2xl font-bold">Latest News</h2>
+      <a href="/news" class="text-accent hover:text-accent-dark">View All →</a>
+    </div>
+    <PostGrid posts={latestNews} />
+  </section>
+</Layout>

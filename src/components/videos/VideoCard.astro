@@ -1,0 +1,43 @@
+---
+interface Props {
+  video: {
+    title: string;
+    thumbnail: string;
+    duration: string;
+    views: string;
+    date: string;
+    url: string;
+  };
+}
+
+const { video } = Astro.props;
+---
+
+<article class="group">
+  <a href={video.url} target="_blank" rel="noopener noreferrer" class="block">
+    <div class="relative aspect-video rounded-lg overflow-hidden mb-3">
+      <img 
+        src={video.thumbnail} 
+        alt={video.title}
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+      <span class="absolute bottom-2 right-2 bg-black/80 text-white text-sm px-2 py-1 rounded">
+        {video.duration}
+      </span>
+    </div>
+    <h3 class="font-bold text-lg mb-2 group-hover:text-accent">
+      {video.title}
+    </h3>
+    <div class="flex items-center text-sm text-gray-400 space-x-3">
+      <span>{video.views} views</span>
+      <span>•</span>
+      <time datetime={video.date}>
+        {new Date(video.date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        })}
+      </time>
+    </div>
+  </a>
+</article>

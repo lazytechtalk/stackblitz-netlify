@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import VideoGrid from '../../components/videos/VideoGrid.astro';
+
+// TODO: Replace with actual data from Sanity
+const videos = [
+  {
+    title: "iPhone 15 Pro Max Review",
+    thumbnail: "/images/iphone-15-review.jpg",
+    duration: "12:45",
+    views: "125K",
+    date: "2024-03-15",
+    url: "https://youtube.com/watch?v=xxx"
+  },
+  {
+    title: "Samsung S24 Ultra vs iPhone 15 Pro Max",
+    thumbnail: "/images/comparison.jpg",
+    duration: "15:20",
+    views: "98K",
+    date: "2024-03-10",
+    url: "https://youtube.com/watch?v=xxx"
+  },
+  {
+    title: "Best Budget Phones 2024",
+    thumbnail: "/images/budget-phones.jpg",
+    duration: "18:30",
+    views: "75K",
+    date: "2024-03-05",
+    url: "https://youtube.com/watch?v=xxx"
+  }
+];
+---
+
+<Layout title="Videos">
+  <section class="container py-12">
+    <h1 class="text-4xl font-bold mb-8">Latest Videos</h1>
+    <VideoGrid videos={videos} />
+  </section>
+</Layout>

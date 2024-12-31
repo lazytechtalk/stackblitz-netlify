@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostGrid from '../../components/PostGrid.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { category: 'latest' } },
+    { params: { category: 'launches' } },
+    { params: { category: 'updates' } },
+  ];
+}
+
+const { category } = Astro.params;
+
+// TODO: Replace with actual data from Sanity
+const posts = [
+  {
+    title: `${category.charAt(0).toUpperCase() + category.slice(1)} Tech News`,
+    excerpt: "Stay updated with the latest in technology.",
+    image: `/images/news-${category}.jpg`,
+    category: "News",
+    date: new Date().toISOString()
+  },
+  // Add more posts...
+];
+
+const categoryTitles = {
+  latest: 'Latest Tech News',
+  launches: 'New Product Launches',
+  updates: 'Tech Updates'
+};
+---
+
+<Layout title={categoryTitles[category] || 'News'}>
+  <section class="container py-12">
+    <h1 class="text-4xl font-bold mb-8">{categoryTitles[category]}</h1>
+    <PostGrid posts={posts} />
+  </section>
+</Layout>

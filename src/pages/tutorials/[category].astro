@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostGrid from '../../components/PostGrid.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { category: 'guides' } },
+    { params: { category: 'tips' } },
+    { params: { category: 'troubleshooting' } },
+  ];
+}
+
+const { category } = Astro.params;
+
+// TODO: Replace with actual data from Sanity
+const posts = [
+  {
+    title: `Tech ${category.charAt(0).toUpperCase() + category.slice(1)}`,
+    excerpt: "Learn and master your tech devices.",
+    image: `/images/tutorial-${category}.jpg`,
+    category: "Tutorials",
+    date: new Date().toISOString()
+  },
+  // Add more posts...
+];
+
+const categoryTitles = {
+  guides: 'Tech Guides',
+  tips: 'Tips & Tricks',
+  troubleshooting: 'Tech Troubleshooting'
+};
+---
+
+<Layout title={categoryTitles[category] || 'Tutorials'}>
+  <section class="container py-12">
+    <h1 class="text-4xl font-bold mb-8">{categoryTitles[category]}</h1>
+    <PostGrid posts={posts} />
+  </section>
+</Layout>

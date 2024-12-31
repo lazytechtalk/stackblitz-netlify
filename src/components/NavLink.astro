@@ -1,0 +1,42 @@
+---
+interface SubItem {
+  label: string;
+  href: string;
+}
+
+interface NavItem {
+  label: string;
+  href: string;
+  subItems?: SubItem[];
+}
+
+interface Props {
+  item: NavItem;
+}
+
+const { item } = Astro.props;
+---
+
+<div class="relative group">
+  <a 
+    href={item.href}
+    class="text-white hover:text-accent transition-colors py-2"
+  >
+    {item.label}
+  </a>
+  
+  {item.subItems && (
+    <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-secondary border border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+      <div class="py-1">
+        {item.subItems.map(subItem => (
+          <a
+            href={subItem.href}
+            class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-accent"
+          >
+            {subItem.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
